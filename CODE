@@ -1,0 +1,76 @@
+def modify_gitignore():
+    # Conteúdo padrão do .gitignore
+    gitignore_content = [
+        "# Byte-compiled / optimized / DLL files",          
+        "__pycache__/",
+        "*.py[cod]",
+        "*$py.class",
+        "# C extensions",
+        "*.so",
+        "# Distribution / packaging",
+        ".Python",
+        "build/",
+        "develop-eggs/",
+        "dist/",
+        "downloads/",
+        "eggs/",
+        ".eggs/",
+        "lib/",
+        "lib64/",
+        "parts/",
+        "sdist/",
+        "var/",
+        "wheels/",
+        "share/python-wheels/",
+        "*.egg-info/",
+        ".installed.cfg",
+        "*.egg",
+        "MANIFEST",
+        # (Continua com o conteúdo adicional do .gitignore...)
+    ]
+    
+    while True:
+        # Menu de opções
+        print("\nOpções:")
+        print("1. Ver conteúdo atual do .gitignore")
+        print("2. Adicionar nova entrada")
+        print("3. Remover uma entrada")
+        print("4. Sair")
+
+        choice = input("Escolha uma opção: ")
+
+        if choice == '1':
+            print("\nConteúdo atual do .gitignore:")
+            for line in gitignore_content:
+                print(line)
+
+        elif choice == '2':
+            new_entry = input("Digite a nova entrada para adicionar ao .gitignore: ")
+            if new_entry not in gitignore_content:
+                gitignore_content.append(new_entry)
+                print(f"'{new_entry}' foi adicionado.")
+            else:
+                print(f"'{new_entry}' já está presente no .gitignore.")
+
+        elif choice == '3':
+            entry_to_remove = input("Digite a entrada que deseja remover do .gitignore: ")
+            if entry_to_remove in gitignore_content:
+                gitignore_content.remove(entry_to_remove)
+                print(f"'{entry_to_remove}' foi removido.")
+            else:
+                print(f"'{entry_to_remove}' não encontrado no .gitignore.")
+
+        elif choice == '4':
+            break
+
+        else:
+            print("Escolha inválida. Tente novamente.")
+    
+    # Salvando o conteúdo modificado em um arquivo .gitignore
+    with open(".gitignore", "w") as f:
+        f.write("\n".join(gitignore_content))
+    print("\nConteúdo atualizado salvo em .gitignore")
+
+# Chama a função para executar o script
+modify_gitignore()
+
